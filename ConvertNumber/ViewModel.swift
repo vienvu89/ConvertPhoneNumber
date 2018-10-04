@@ -43,8 +43,9 @@ class ViewModel: NSObject {
 
     func exchangeOldToNew(string : String) -> String {
         let firstConvert = convertToZeroStart(string: string)
+        let firstConvertTrimmed = firstConvert.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        return dictChangeNumber[firstConvert] ?? firstConvert
+        return dictChangeNumber[firstConvertTrimmed] ?? firstConvert
     }
     
     func convertToZeroStart(string: String) -> String {

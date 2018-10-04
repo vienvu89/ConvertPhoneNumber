@@ -22,6 +22,12 @@ class ViewmodelTest: QuickSpec {
         
         describe("Test exchane Old To nex") {
             it("should pass") {
+                expect(viewModel.exchangeOldToNew(string: "0120 ")).to(equal("070"))
+            }
+        }
+        
+        describe("Test exchane Old To nex") {
+            it("should pass") {
                 expect(viewModel.exchangeOldToNew(string: "0120")).to(equal("070"))
             }
         }
@@ -35,6 +41,11 @@ class ViewmodelTest: QuickSpec {
         describe("Test convert number") {
             it("should convert to new number") {
                 expect(viewModel.converNumber(number: "01652679159")).to(equal("0352679159"))
+            }
+        }
+        describe("Test convert number") {
+            it("should convert to new number") {
+                expect(viewModel.converNumber(number: "0165 2679159")).to(equal("0352679159"))
             }
         }
         
