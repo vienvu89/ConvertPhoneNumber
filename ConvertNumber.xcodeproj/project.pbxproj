@@ -18,6 +18,8 @@
 		8212533E215DF952007262F9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8212532C215DDB56007262F9 /* ViewModel.swift */; };
 		A746A86DFEF48702A360D649 /* Pods_ConvertNumber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A01EE5F684A9E94B4053A5 /* Pods_ConvertNumber.framework */; };
 		F36935971271AB5FECDC997B /* Pods_ConvertNumberTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D744E57414819FAE43DF78 /* Pods_ConvertNumberTests.framework */; };
+		FBAE3F182165C24800AB59A2 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBAE3F162165C24800AB59A2 /* ContactsUI.framework */; };
+		FBAE3F192165C24800AB59A2 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBAE3F172165C24800AB59A2 /* Contacts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		8212533C215DE704007262F9 /* ViewmodelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewmodelTest.swift; sourceTree = "<group>"; };
 		83A69F1BED180A3AD525BA20 /* Pods-ConvertNumberTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConvertNumberTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConvertNumberTests/Pods-ConvertNumberTests.release.xcconfig"; sourceTree = "<group>"; };
 		F0ABF086057AE04FA54B5E7B /* Pods-ConvertNumber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConvertNumber.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConvertNumber/Pods-ConvertNumber.release.xcconfig"; sourceTree = "<group>"; };
+		FBAE3F162165C24800AB59A2 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		FBAE3F172165C24800AB59A2 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBAE3F182165C24800AB59A2 /* ContactsUI.framework in Frameworks */,
+				FBAE3F192165C24800AB59A2 /* Contacts.framework in Frameworks */,
 				A746A86DFEF48702A360D649 /* Pods_ConvertNumber.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +135,8 @@
 		8B41681F70601E206D9406E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FBAE3F172165C24800AB59A2 /* Contacts.framework */,
+				FBAE3F162165C24800AB59A2 /* ContactsUI.framework */,
 				61A01EE5F684A9E94B4053A5 /* Pods_ConvertNumber.framework */,
 				10D744E57414819FAE43DF78 /* Pods_ConvertNumberTests.framework */,
 			);
@@ -245,7 +253,6 @@
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ConvertNumber-checkManifestLockResult.txt",
 			);
@@ -259,14 +266,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ConvertNumberTests/Pods-ConvertNumberTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
@@ -281,13 +286,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-		
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ConvertNumberTests-checkManifestLockResult.txt",
 			);
@@ -467,17 +470,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0931B254D1B206318018CE54 /* Pods-ConvertNumber.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3PJR37WJ8F;
+				DEVELOPMENT_TEAM = EVEWM7299Q;
 				INFOPLIST_FILE = ConvertNumber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "vien-vu.ConvertNumber";
+				PRODUCT_BUNDLE_IDENTIFIER = "vien-vu.ConvertNumbervien";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -488,17 +492,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F0ABF086057AE04FA54B5E7B /* Pods-ConvertNumber.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3PJR37WJ8F;
+				DEVELOPMENT_TEAM = EVEWM7299Q;
 				INFOPLIST_FILE = ConvertNumber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "vien-vu.ConvertNumber";
+				PRODUCT_BUNDLE_IDENTIFIER = "vien-vu.ConvertNumbervien";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
