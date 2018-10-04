@@ -60,27 +60,27 @@ class ViewController: UIViewController {
     
     @IBAction func convertIsTapped(_ sender: Any) {
         contacsts.enumerated().forEach { (i, contact) in
-           try! updatePhoneNumber(contact: contact)
+            let contact = updatePhoneNumber(contact: contact)
+            self.updateContact(contact: contact)
         }
     }
     
-    func updatePhoneNumber(contact: CNContact) {
+    func updatePhoneNumber(contact: CNContact) -> CNMutableContact {
         let mutableContact = contact.mutableCopy() as! CNMutableContact
-        
-        let arrayPhone = contact.phoneNumbers
-        
-        let newPhoneString =  arrayPhone.enumerated().compactMap { (i, phone) -> String? in
-            return viewModel.converNumber(number: phone.value.stringValue)
+        let arrayPhone = contact.phoneNumbers.map { phoneNumber -> CNLabeledValue<CNPhoneNumber> in
+            let phone = CNLabeledValue(label: phoneNumber.label ?? CNLabelPhoneNumberMobile, value: CNPhoneNumber(stringValue: self.viewModel.converNumber(number: phoneNumber.value.stringValue)))
+            
+            return phone
         }
-        var arrayPhoneNew = [Any]()
-        newPhoneString.enumerated().forEach { (i, string) in
-            let phone = CNLabeledValue(label: CNLabelPhoneNumberMobile, value: CNPhoneNumber(stringValue: string))
-            arrayPhoneNew.append(phone)
-        }
-        mutableContact.phoneNumbers = arrayPhoneNew as! [CNLabeledValue<CNPhoneNumber>]
+        mutableContact.phoneNumbers = arrayPhone
+        
+        return mutableContact
+    }
+    
+    func updateContact(contact: CNMutableContact) {
         let store = CNContactStore()
         let saveRequest = CNSaveRequest()
-        saveRequest.update(mutableContact)
+        saveRequest.update(contact)
         try! store.execute(saveRequest)
     }
 }

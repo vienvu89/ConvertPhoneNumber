@@ -44,7 +44,7 @@ class ViewModel: NSObject {
     func exchangeOldToNew(string : String) -> String {
         let firstConvert = convertToZeroStart(string: string)
         
-        return dictChangeNumber[firstConvert] ?? ""
+        return dictChangeNumber[firstConvert] ?? firstConvert
     }
     
     func convertToZeroStart(string: String) -> String {
