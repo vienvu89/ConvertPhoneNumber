@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var contacsts = [CNContact]()
+    var contactsUpdated = [CNMutableContact]()
     var viewModel = ViewModel()
     
     override func viewDidLoad() {
@@ -57,11 +58,16 @@ class ViewController: UIViewController {
         tableView.reloadData()
     }
     
-    
     @IBAction func convertIsTapped(_ sender: Any) {
-        contacsts.enumerated().forEach { (i, contact) in
-            let contact = updatePhoneNumber(contact: contact)
-            self.updateContact(contact: contact)
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.contacsts.forEach {  contact in
+                let contact = self.updatePhoneNumber(contact: contact)
+                self.contactsUpdated.append(contact)
+            }
+            self.updateContact()
         }
     }
     
@@ -77,11 +83,21 @@ class ViewController: UIViewController {
         return mutableContact
     }
     
-    func updateContact(contact: CNMutableContact) {
+    func updateContact() {
         let store = CNContactStore()
         let saveRequest = CNSaveRequest()
-        saveRequest.update(contact)
+        contactsUpdated.forEach { (contact) in
+            saveRequest.update(contact)
+        }
         try! store.execute(saveRequest)
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -109,7 +125,6 @@ extension ViewController : UITableViewDataSource {
 
 extension ViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("fuck you la")
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
