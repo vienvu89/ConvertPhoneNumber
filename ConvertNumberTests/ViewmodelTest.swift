@@ -40,7 +40,7 @@ class ViewmodelTest: QuickSpec {
 
         describe("Test convert number") {
             it("should convert to new number") {
-                expect(viewModel.converNumber(number: "01652679159")).to(equal("0352679159"))
+                expect(viewModel.converNumber(number: "01687235687")).to(equal("0387235687"))
             }
         }
         describe("Test convert number") {

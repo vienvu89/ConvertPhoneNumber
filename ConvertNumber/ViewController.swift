@@ -38,6 +38,7 @@ class ViewController: UIViewController {
     }
     
     func loadConctact() {
+        self.contacsts.removeAll()
         let keys = [CNContactPhoneNumbersKey, CNContactFormatter.descriptorForRequiredKeys(for: .phoneticFullName)] as! [CNKeyDescriptor]
         let request = CNContactFetchRequest(keysToFetch: keys)
         let contactStore = CNContactStore()
@@ -59,6 +60,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func convertIsTapped(_ sender: Any) {
+        self.contactsUpdated.removeAll()
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else {
                 return
@@ -96,7 +98,8 @@ class ViewController: UIViewController {
                 return
             }
             
-            self.tableView.reloadData()
+            self.loadConctact()
+            self.showInfo()
         }
     }
 }
