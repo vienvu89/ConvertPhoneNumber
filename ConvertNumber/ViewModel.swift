@@ -34,21 +34,19 @@ class ViewModel: NSObject {
     ]
     
     func converNumber(number: String) -> String {
-        let last = String(number.suffix(7))
-        let first = number.replacingOccurrences(of: last, with: "")
-        let firstChanged = exchangeOldToNew(string: first)
+        let stringClean = number.components(separatedBy: " ").joined()
+        let replaceSmsStart = stringClean.replacingOccurrences(of: "+84", with: "0")
+        if replaceSmsStart.count < 11  {
+            return number
+        }
         
-        return firstChanged + last
-    }
-
-    func exchangeOldToNew(string : String) -> String {
-        let firstConvert = convertToZeroStart(string: string)
-        let firstConvertTrimmed = firstConvert.trimmingCharacters(in: .whitespacesAndNewlines)
+        let first = replaceSmsStart.prefix(4)
+        let last = replaceSmsStart.suffix(replaceSmsStart.count - 4)
         
-        return dictChangeNumber[firstConvertTrimmed] ?? firstConvert
-    }
-    
-    func convertToZeroStart(string: String) -> String {
-        return string.replacingOccurrences(of: "+84", with: "0")
+        guard let firtConvert = dictChangeNumber[String(first)] else {
+            return number
+        }
+        
+        return firtConvert + last
     }
 }

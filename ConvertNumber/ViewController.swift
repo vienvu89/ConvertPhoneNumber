@@ -26,10 +26,13 @@ class ViewController: UIViewController {
         contactStore.requestAccess(for: CNEntityType.contacts) { (allow, error) in
             if let error = error {
                 print(error)
+            } else {
+                self.loadConctact()
+                self.showInfo()
             }
         }
-        loadConctact()
-        showInfo()
+    
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,16 +63,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func convertIsTapped(_ sender: Any) {
-        self.contactsUpdated.removeAll()
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else {
                 return
             }
-            self.contacsts.forEach {  contact in
-                let contact = self.updatePhoneNumber(contact: contact)
-                self.contactsUpdated.append(contact)
-            }
-            self.updateContact()
+           
+            self.contactsUpdated =  self.contacsts.map({ [weak self] (contact) -> CNMutableContact in
+                return self!.updatePhoneNumber(contact: contact)
+            })
+            self.updateContact(self.contactsUpdated)
         }
     }
     
@@ -85,10 +87,10 @@ class ViewController: UIViewController {
         return mutableContact
     }
     
-    func updateContact() {
+    func updateContact(_ contacts: [CNMutableContact]) {
         let store = CNContactStore()
         let saveRequest = CNSaveRequest()
-        contactsUpdated.forEach { (contact) in
+        contacts.forEach { (contact) in
             saveRequest.update(contact)
         }
         try! store.execute(saveRequest)
